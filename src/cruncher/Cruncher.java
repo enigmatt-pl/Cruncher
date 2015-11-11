@@ -26,6 +26,7 @@ public class Cruncher {
             case "1":
                 System.out.println("Simple Brute Force selected");
                 //Create your class here
+                BruteForce.run(args[1]);
                 endProgram();
                 break;
             case "2":
