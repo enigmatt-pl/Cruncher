@@ -52,14 +52,3 @@ public class Cruncher {
 
     
 }
-
-/*
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        try {
-                String s = br.readLine();
-                System.out.println(s);
-            } catch (IOException ex) {
-                Logger.getLogger(Cruncher.class.getName()).log(Level.SEVERE, null, ex);
-                
-            }
-*/
