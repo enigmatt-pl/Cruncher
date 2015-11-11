@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/******************************************************************************/
+/**
+@file         Cruncher.java
+@copyright    UP663375, UP646321, ECE00279
+*
+@language     Java
+*
+@description  Main function of the program
+*******************************************************************************/
 package cruncher;
 
-/**
- *
- * @author Mateusz
- */
+/* INCLUDE FILES **************************************************************/
+
+
 public class Cruncher {
     
     /*
@@ -40,10 +43,14 @@ public class Cruncher {
                 break;
                 
         }
-        
-            
     }
-    
+
+    /* endProgram **************************************************************
+    ** 11/11/2015  M.Michalski    Initial Version   
+    ****************************************************************************/
+    /** Description: used in order to stop the program from terminating. Please
+     *  use whenever you want to prevent the program from quitting.
+    ****************************************************************************/
     public static void endProgram(){
         System.out.println("Press Enter to continue");
         try{System.in.read();}
