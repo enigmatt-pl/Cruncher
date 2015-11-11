@@ -10,13 +10,14 @@
 package cruncher;
 
 /* INCLUDE FILES **************************************************************/
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class BruteForce {
     
     /* Private variables declarations */
+    static private final List<String> hashes =  new ArrayList<>();
    
     
     public static String run(String fileName){
@@ -27,9 +28,13 @@ public final class BruteForce {
             String sCurrentLine;
 
             bufferReader = new BufferedReader(new FileReader(fileName));
-
+            int lineNumber = 0;
+            
             while ((sCurrentLine = bufferReader.readLine()) != null) {
-                System.out.println(sCurrentLine);
+                String[] parameters = sCurrentLine.split(":");
+                hashes.add(parameters[1]);
+                System.out.println(hashes.get(lineNumber));
+                lineNumber++;
             }
 
         } 
