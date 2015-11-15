@@ -18,6 +18,7 @@ import org.apache.commons.codec.digest.Crypt;
 public final class BruteForce {
     
     /* Private variables declarations */
+    public static String salt = "aa";
     
     /* run *********************************************************************
     ** 09/11/2015  M.Michalski Initial Version
@@ -30,6 +31,6 @@ public final class BruteForce {
         UnixFile.processFile(fileName);
         System.out.println(UnixFile.getHash(0));
         
-        System.out.println(Crypt.crypt("Wide51", "aa"));  
+        System.out.println(Crypt.crypt("Wide51", salt));  
     }
 }
