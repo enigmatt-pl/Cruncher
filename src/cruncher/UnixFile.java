@@ -8,8 +8,8 @@
 *
 @language      Java SE 8 (March 18, 2014)
 *
-@description  Processes Unix passwd file in order to retrieve all the hashed 
-*             passwords
+@description   Processes Unix passwd file in order to retrieve all the hashed 
+*              passwords
 *             
 *              
 *******************************************************************************/
@@ -46,11 +46,11 @@ public final class UnixFile {
                 hashes.add(parameters[1]);
             }
         } 
-        catch (IOException e) {
+        catch (IOException e){
         } 
         
-        finally {
-            try {
+        finally{
+            try{
                 if (bufferReader != null)bufferReader.close();
             } 
             catch (IOException e) {

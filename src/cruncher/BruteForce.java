@@ -2,48 +2,33 @@
 /**
 @file         BruteForce.java
 @copyright    UP663375, UP646321, ECE00279
+* 
+@author        Mateusz Michalski
+@responsible   UP663375
 *
-@language     Java
+@language      Java SE 8 (March 18, 2014)
 *
 @description  BruteForce functionality implementation
 *******************************************************************************/
 package cruncher;
 
 /* INCLUDE FILES **************************************************************/
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.codec.digest.Crypt;
 
 public final class BruteForce {
     
     /* Private variables declarations */
-    static private final List<String> hashes =  new ArrayList<>();
+    
+    /* run *********************************************************************
+    ** 09/11/2015  M.Michalski Initial Version
+    ***************************************************************************/
+    /** Runs the logic behind brute force functionality
+     * @param fileName - name of the UNIX
+    ***************************************************************************/
     public static void run(String fileName){
-    BufferedReader bufferReader = null;
-        
-        try{
-            String sCurrentLine;
-            bufferReader = new BufferedReader(new FileReader(fileName));
-            int lineNumber = 0;
-            
-            while((sCurrentLine = bufferReader.readLine()) != null ){
-                String[] parameters = sCurrentLine.split(":");
-                hashes.add(parameters[1]);
-            }
-        } 
-        catch (IOException e) {
-            e.printStackTrace();
-        } 
-        
-        finally {
-            try {
-                if (bufferReader != null)bufferReader.close();
-            } 
-            catch (IOException e) {
-                e.printStackTrace();
-            }    
-        }
+    
+        UnixFile.processFile(fileName);
+        System.out.println(UnixFile.getHash(0));
         
         System.out.println(Crypt.crypt("Wide51", "aa"));  
     }
