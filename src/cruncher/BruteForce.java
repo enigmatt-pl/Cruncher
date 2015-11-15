@@ -13,45 +13,38 @@ package cruncher;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.codec.digest.Crypt;
 
 public final class BruteForce {
     
     /* Private variables declarations */
     static private final List<String> hashes =  new ArrayList<>();
-   
-    
-    public static String run(String fileName){
-        BufferedReader bufferReader = null;
-
+    public static void run(String fileName){
+    BufferedReader bufferReader = null;
+        
         try{
-
             String sCurrentLine;
-
             bufferReader = new BufferedReader(new FileReader(fileName));
             int lineNumber = 0;
             
-            while ((sCurrentLine = bufferReader.readLine()) != null) {
+            while((sCurrentLine = bufferReader.readLine()) != null ){
                 String[] parameters = sCurrentLine.split(":");
                 hashes.add(parameters[1]);
-                System.out.println(hashes.get(lineNumber));
-                lineNumber++;
             }
-
         } 
         catch (IOException e) {
             e.printStackTrace();
-        
         } 
+        
         finally {
             try {
                 if (bufferReader != null)bufferReader.close();
             } 
-            catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }    
         }
         
-        return "result";
-        
+        System.out.println(Crypt.crypt("Wide51", "aa"));  
     }
 }
