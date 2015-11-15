@@ -19,7 +19,7 @@ import java.util.List;
 
 public final class CommonFile {
     
-    /* STATIC INITIALIZATION **************************************************/
+    /* Private variables declarations */
     private static String currentHash;
     private static final List<String> unhashed =  new ArrayList<>();
     
@@ -27,6 +27,7 @@ public final class CommonFile {
     ** 11/11/2015  M.Michalski Initial Version
     ***************************************************************************/
     /** Adds a hash to be processed
+     * @param hash
     ***************************************************************************/
     public static void addHash(String hash){
         
@@ -39,6 +40,7 @@ public final class CommonFile {
     ** 11/11/2015  M.Michalski Initial Version
     ***************************************************************************/
     /** Adds a the successfully cracked hash input text to the array list
+     * @param text
     ***************************************************************************/
     public static void addUnhashedValue(String text){
         
