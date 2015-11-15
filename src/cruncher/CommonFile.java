@@ -1,23 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/******************************************************************************/
+/**
+@file          Cruncher.java
+@copyright     UP663375, UP646321, ECE00279
+* 
+@author        Mateusz Michalski
+@responsible   UP663375, UP646321, ECE00279
+*
+@language      Java SE 8 (March 18, 2014)
+*
+@description   Common File - serves as common buffer for all threads
+*******************************************************************************/
 package cruncher;
 
+/* INCLUDE FILES **************************************************************/
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- *
- * @author Mateusz
- */
 public final class CommonFile {
     
+    /* STATIC INITIALIZATION **************************************************/
     private static String currentHash;
     private static final List<String> unhashed =  new ArrayList<>();
     
+    /* addHash *****************************************************************
+    ** 11/11/2015  M.Michalski Initial Version
+    ***************************************************************************/
+    /** Adds a hash to be processed
+    ***************************************************************************/
     public static void addHash(String hash){
         
         currentHash = hash;
@@ -25,6 +35,11 @@ public final class CommonFile {
         
     }
     
+    /* addUnhashedValue ********************************************************
+    ** 11/11/2015  M.Michalski Initial Version
+    ***************************************************************************/
+    /** Adds a the successfully cracked hash input text to the array list
+    ***************************************************************************/
     public static void addUnhashedValue(String text){
         
         unhashed.add(text);
@@ -33,8 +48,14 @@ public final class CommonFile {
         
     }
     
-    public static void printUnhashedValues(String text){
+    /* printUnhashedValues *****************************************************
+    ** 11/11/2015  M.Michalski Initial Version
+    ***************************************************************************/
+    /** Prints all successfully cracked hashes
+    ***************************************************************************/
+    public static void printUnhashedValues(){
         
+        //TODO: Add code for printing the hashed value
         unhashed.stream().forEach((i) -> {
             System.out.println(i);
         });

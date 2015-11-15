@@ -1,11 +1,14 @@
 /******************************************************************************/
 /**
-@file         Cruncher.java
-@copyright    UP663375, UP646321, ECE00279
+@file          Cruncher.java
+@copyright     UP663375, UP646321, ECE00279
+* 
+@author        Mateusz Michalski
+@responsible   UP663375, UP646321, ECE00279
 *
-@language     Java
+@language      Java SE 8 (March 18, 2014)
 *
-@description  Main function of the program
+@description   Main class of the Cruncher
 *******************************************************************************/
 package cruncher;
 
