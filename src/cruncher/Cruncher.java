@@ -17,10 +17,14 @@ package cruncher;
 
 public class Cruncher {
     
-    /*
+    /* main **************************************************************
+    ** 08/11/2015  M.Michalski    Initial Version
+    ** 09/11/2015  M.Michalski    Added case no. 2 (this is the documentation example
+    ****************************************************************************/
+    /** Description: main function of the Cruncher
      * 
-     * @param args the command line arguments
-     */
+     * @param args - arguments from the command line
+    ****************************************************************************/
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Setting the parameters");
