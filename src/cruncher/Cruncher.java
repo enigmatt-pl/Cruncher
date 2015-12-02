@@ -12,6 +12,11 @@
 *******************************************************************************/
 package cruncher;
 
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /* INCLUDE FILES **************************************************************/
 
 
@@ -33,12 +38,16 @@ public class Cruncher {
             case "1":
                 System.out.println("Simple Brute Force selected");
                 //Create your class here
-                BruteForce.run(args[1]);
                 endProgram();
                 break;
             case "2":
                 System.out.println("Brute Force with Masking selected");
-                //Create your class here
+                try {
+                    BruteForce.run(args[1], Integer.parseInt(args[2]));
+                } 
+                catch (UnsupportedEncodingException | FileNotFoundException ex) {
+                    Logger.getLogger(Cruncher.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 endProgram();
             case "3":
                 System.out.println("Dictionary attack selected");
