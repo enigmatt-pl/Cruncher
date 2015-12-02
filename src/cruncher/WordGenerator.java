@@ -12,6 +12,8 @@
 *******************************************************************************/
 package cruncher;
 
+import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 
@@ -22,15 +24,23 @@ public class WordGenerator {
     private String sWord;
     private char[] cMask;
     private char[] cSymbol;
-    private int[]  iMaxIter;
     private ArrayList<Character> cLowerCaseEnAlphabet;
     private ArrayList<Character> cUpperCaseEnAlphabet;
     private ArrayList<Character> cDigit;
     private ArrayList<Character> cSymbols;
     
     /* Public variables declarations */
-    public long lSequenceNo = 0;
-    public ArrayList<ArrayList> LiWord;
+    public long lSequenceNo = 1;
+
+    /**
+     * Holds all possible symbols
+     */
+    public static ArrayList<ArrayList> liWord;
+
+    /**
+     * Holds current sequence
+     */
+    public static ArrayList<Integer> bSequence = new ArrayList<>();
     
     public WordGenerator(String sMask){
         this.cMask = sMask.toCharArray();
@@ -42,35 +52,42 @@ public class WordGenerator {
         initSymbols('s');
         
         initConditions();
+        
+        for(int i = 0; i <= iSize; i++){
+            WordGenerator.bSequence.add(0);
+        }
+        
     }
     
     private void initConditions(){
-        LiWord = new ArrayList<>();
+        lSequenceNo = lSequenceNo << (iSize * 8 - 1);
+        
+        liWord = new ArrayList<>();
         for(int i = 0; i < iSize; i++){
             switch(cMask[i]){
                 case 'l':
-                    LiWord.add(cLowerCaseEnAlphabet);
+                    liWord.add(cLowerCaseEnAlphabet);
                     break;
                 case 'L':
-                    LiWord.add(cLowerCaseEnAlphabet);
+                    liWord.add(cLowerCaseEnAlphabet);
                     break;
                 case 'u':
-                    LiWord.add(cUpperCaseEnAlphabet);
+                    liWord.add(cUpperCaseEnAlphabet);
                     break;
                 case 'U':
-                    LiWord.add(cUpperCaseEnAlphabet);
+                    liWord.add(cUpperCaseEnAlphabet);
                     break;
                 case 'd':
-                    LiWord.add(cDigit);
+                    liWord.add(cDigit);
                     break;
                 case 'D':
-                    LiWord.add(cDigit);
+                    liWord.add(cDigit);
                     break;
                 case 's':
-                    LiWord.add(cSymbols);
+                    liWord.add(cSymbols);
                     break;
                 case 'S':
-                    LiWord.add(cSymbols);
+                    liWord.add(cSymbols);
                     break;
             }
         }
@@ -78,14 +95,65 @@ public class WordGenerator {
     public String generate(){
         String sOutput = "";
 
-        for(int i =0; i < LiWord.size(); i++){
-            
-            sOutput += LiWord.get(i).get(i);
+        for(int i =0; i < liWord.size(); i++){
+
+            sOutput += liWord.get(i).get(bSequence.get(i));
         }
-        
+        //System.out.println(lSequenceNo);
         return sOutput;
     }
     
+    public static void nextSequence(){
+        ArrayList<Integer> liNextSequence = new ArrayList<>();
+        
+        int i = 0;
+        if(bSequence.get(i) < liWord.get(i).size() - 1)
+            bSequence.set(i, bSequence.get(i) + 1);
+        
+        else{
+            bSequence.set(i, 0);
+            i++;
+            if (bSequence.get(i) < liWord.get(i).size() - 1)
+                bSequence.set(i, bSequence.get(i) + 1);
+            else{
+                bSequence.set(i, 0);
+                i++;
+                if (bSequence.get(i) < liWord.get(i).size() - 1)
+                    bSequence.set(i, bSequence.get(i) + 1);
+                else{
+                    bSequence.set(i, 0);
+                    i++;
+                    if (bSequence.get(i) < liWord.get(i).size() - 1)
+                        bSequence.set(i, bSequence.get(i) + 1);
+                    else{
+                        bSequence.set(i, 0);
+                        i++;
+                        if (bSequence.get(i) < liWord.get(i).size() - 1)
+                            bSequence.set(i, bSequence.get(i) + 1);
+                        else{
+                            bSequence.set(i, 0);
+                            i++;
+                            if (bSequence.get(i) < liWord.get(i).size() - 1)
+                                bSequence.set(i, bSequence.get(i) + 1);
+                            else{
+                                bSequence.set(i, 0);
+                                i++;
+                                if (bSequence.get(i) < liWord.get(i).size() - 1)
+                                    bSequence.set(i, bSequence.get(i) + 1);
+                                else{
+                                    bSequence.set(i, 0);
+                                    i++;
+                                    if (bSequence.get(i) < liWord.get(i).size() - 1)
+                                        bSequence.set(i, bSequence.get(i) + 1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
     private void initSymbols(char cSymbol){
         
         char ch; //identified chaarcter
