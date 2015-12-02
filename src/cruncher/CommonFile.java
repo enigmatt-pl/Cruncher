@@ -20,8 +20,9 @@ import java.util.List;
 public final class CommonFile {
     
     /* Private variables declarations */
-    private static String currentHash;
-    private static final List<String> unhashed =  new ArrayList<>();
+    public static String sCurrentHash;
+    public static int    iCurrentHash = 0;
+    private static final List<String> lUnhashed =  new ArrayList<>();
     
     /* addHash *****************************************************************
     ** 11/11/2015  M.Michalski Initial Version
@@ -31,9 +32,9 @@ public final class CommonFile {
     ***************************************************************************/
     public static void addHash(String hash){
         
-        currentHash = hash;
+        //iCurrentHash = hash;
         System.out.println("The following hash will be now processed: " + hash);
-        
+        sCurrentHash = hash;
     }
     
     /* addUnhashedValue ********************************************************
@@ -44,9 +45,10 @@ public final class CommonFile {
     ***************************************************************************/
     public static void addUnhashedValue(String text){
         
-        unhashed.add(text);
-        System.out.println("The hash: " + currentHash + " has been cracked! The"
-                + " unhashed value is: " + unhashed.get(unhashed.size() - 1));
+        lUnhashed.add(text);
+        iCurrentHash++;
+        System.out.println("The hash: " + sCurrentHash + " has been cracked! The"
+                + " unhashed value is: " + lUnhashed.get(lUnhashed.size() - 1));
         
     }
     
@@ -58,7 +60,7 @@ public final class CommonFile {
     public static void printUnhashedValues(){
         
         //TODO: Add code for printing the hashed value
-        unhashed.stream().forEach((i) -> {
+        lUnhashed.stream().forEach((i) -> {
             System.out.println(i);
         });
         
