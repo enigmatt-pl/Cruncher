@@ -12,6 +12,11 @@
 *******************************************************************************/
 package cruncher;
 
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /* INCLUDE FILES **************************************************************/
 
 
@@ -32,8 +37,14 @@ public class Cruncher {
         switch(args[0]){
             case "1":
                 System.out.println("Simple Brute Force selected");
-                //Create your class here
-                BruteForce.run(args[1]);
+            {
+                try {
+                    //Create your class here
+                    BruteForce.run(args[1], Integer.parseInt(args[2]));
+                } catch (UnsupportedEncodingException | FileNotFoundException ex) {
+                    Logger.getLogger(Cruncher.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 endProgram();
                 break;
             case "2":
