@@ -25,34 +25,6 @@ public final class BruteForce {
     /* Private variables declarations */
     public static Console console = System.console();
     public static String salt = "aa";
-
-    /**
-     * contains English alphabet lower case letters
-     */
-    public static char[] alphabetLwrCsEn = {
-                                         'a','b','c','d','e','f','g','h','i',
-                                         + 'j','k','l','m','n','o','p','q','r',
-                                         + 's','t','u','v','w','x','y','z'
-                                         };
- 
-     /**
-     * contains English alphabet upper case letters
-     */
-    public static char[] alphabetUprCsEn = {
-                                         'A','B','C','D','E','F','G','H','I',
-                                         + 'J','K','L','M','N','O','P','Q','R',
-                                         + 'S','T','U','V','W','X','Y','Z'
-                                         };
-    
-    /**
-     * Symbols for brute force
-     */
-    public static char[] symbols = { 
-                                    ' ', '!', '"', '#', '$', '%', '&','(' ,')',
-                                    + '*','+', ',', '-', '.', '/', ':', ';',
-                                    + '<', '=', '>', '?', '@', '[', '\', ']',
-                                    + '^', '_', '`', '{', '|', '}', '~'
-                                    };
     
     /**
      * Notifies if the bruteforce process is completed
@@ -82,15 +54,6 @@ public final class BruteForce {
         //FileWrapper.initOutputFile("cache.txt");
         //PrintWriter writer = new PrintWriter("cache.txt", "UTF-8");
         
-        int alphabetUpperCaseSize = alphabetLwrCsEn.length;
-        int alphabetLowerCaseSize = alphabetUprCsEn.length;
-        int symbolSize            = symbols.length;
-        
-        int symbolsToChck = alphabetUpperCaseSize * alphabetLowerCaseSize 
-                          * alphabetLowerCaseSize * 9;
-        
-        symbolsToChck += size;
-        System.out.println("Symbols to check: " + symbolsToChck);
         
         /*
         int size = 3;
@@ -107,10 +70,13 @@ public final class BruteForce {
         //String sCurrentHash = CommonFile.sCurrentHash;
         String guessTxt = "", sComparison = "";
         
-        FileWrapper.UnixPasswdFile.hashes.stream().forEach((sCurrentHash) -> {
+        WordGenerator generator = new WordGenerator("luds");
+        
+        System.out.println(generator.generate());
+        
+        FileWrapper.UnixPasswdFile.hashes.stream().forEach((String sCurrentHash) -> {
+            CommonFile.sCurrentHash = sCurrentHash;
             while(crackStatus = true){
-                CommonFile.sCurrentHash = sCurrentHash;
-
                 //BT
                 //for(int i = 0; i < size; i++){
                 //  guessTxt += "adhJGDE";
