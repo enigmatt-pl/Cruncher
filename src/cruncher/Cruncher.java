@@ -37,19 +37,17 @@ public class Cruncher {
         switch(args[0]){
             case "1":
                 System.out.println("Simple Brute Force selected");
-            {
-                try {
-                    //Create your class here
-                    BruteForce.run(args[1], Integer.parseInt(args[2]));
-                } catch (UnsupportedEncodingException | FileNotFoundException ex) {
-                    Logger.getLogger(Cruncher.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+                //Create your class here
                 endProgram();
                 break;
             case "2":
                 System.out.println("Brute Force with Masking selected");
-                //Create your class here
+                try {
+                    BruteForce.run(args[1], Integer.parseInt(args[2]));
+                } 
+                catch (UnsupportedEncodingException | FileNotFoundException ex) {
+                    Logger.getLogger(Cruncher.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 endProgram();
             case "3":
                 System.out.println("Dictionary attack selected");
