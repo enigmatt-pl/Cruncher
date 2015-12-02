@@ -17,6 +17,7 @@ import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.Scanner;
 import org.apache.commons.codec.digest.Crypt;
 
@@ -51,34 +52,33 @@ public final class BruteForce {
     
         FileWrapper.UnixPasswdFile.processUnixFile(fileName);
         
-        //FileWrapper.initOutputFile("cache.txt");
-        //PrintWriter writer = new PrintWriter("cache.txt", "UTF-8");
-        
-        
-        /*
-        int size = 3;
-        no = no of iter
-        alph[no<2>], alph[no<1>], alph<0>
-        */
-        
-        //console.readLine("\"Enter length of the test word: ");
-        //length = Integer.parseInt("1");
-        
-        //System.out.println(length);
-        int iSequence = 0;
-        int iCurrentHash    = CommonFile.iCurrentHash;
         //String sCurrentHash = CommonFile.sCurrentHash;
-        String guessTxt = "", sComparison = "";
+        String sGuessTxt = "", sComparison = "matpro", sMask = "llllll";
         
-        WordGenerator generator = new WordGenerator("ddddddd");
+        WordGenerator generator = new WordGenerator(sMask);
         
-        FileWrapper.UnixPasswdFile.hashes.stream().forEach((String sCurrentHash) -> {
-            CommonFile.sCurrentHash = sCurrentHash;
-            while(crackStatus = true){
-                System.out.println(generator.generate());
-                WordGenerator.nextSequence();
+        System.out.println("The program will now start generating words with " 
+                + "the following mask: " + sMask);
+        Date currentDate = new Date();
+        String sStartTime = currentDate.toString();
+        System.out.println("Started at: " + sStartTime);
+        
+        //for (String sCurrentHash : FileWrapper.UnixPasswdFile.hashes ) {
+            //CommonFile.sCurrentHash = sCurrentHash;
+            while(crackStatus != true){
+                //System.out.println(generator.generate());
+                sGuessTxt = generator.generate();
+                
+                if(sGuessTxt.equals(sComparison)){
+                    CommonFile.addUnhashedValue(sGuessTxt);
+                    crackStatus = true;
+                    String sStopTime = currentDate.toString();
+                    System.out.println("Stopped at: " + sStopTime);
+                }
+                else
+                    WordGenerator.nextSequence();
             }
-        });
+        //}
     }
     
     public static void findPwd(char[] password, int position) {
