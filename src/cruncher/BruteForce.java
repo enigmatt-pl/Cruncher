@@ -70,30 +70,13 @@ public final class BruteForce {
         //String sCurrentHash = CommonFile.sCurrentHash;
         String guessTxt = "", sComparison = "";
         
-        WordGenerator generator = new WordGenerator("luds");
-        
-        System.out.println(generator.generate());
+        WordGenerator generator = new WordGenerator("ddddddd");
         
         FileWrapper.UnixPasswdFile.hashes.stream().forEach((String sCurrentHash) -> {
             CommonFile.sCurrentHash = sCurrentHash;
             while(crackStatus = true){
-                //BT
-                //for(int i = 0; i < size; i++){
-                //  guessTxt += "adhJGDE";
-                //}
-                //end BT
-
-                
-                //sComparison = Crypt.crypt(guessTxt, salt);
-                /*
-                if(sComparison.equals(sCurrentHash)){
-                CommonFile.addUnhashedValue(guessTxt);
-                crackStatus = true;
-                }
-                else{
-                iSequence++;
-                System.out.println(iSequence);
-                }*/
+                System.out.println(generator.generate());
+                WordGenerator.nextSequence();
             }
         });
     }
