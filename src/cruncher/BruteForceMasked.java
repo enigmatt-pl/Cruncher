@@ -46,10 +46,8 @@ public final class BruteForceMasked {
     {
     
         FileWrapper.UnixPasswdFile.processUnixFile(sFileName);
-        
-        //String sCurrentHash = CommonFile.sCurrentHash;
-        String sGuessTxt, sComparison = Crypt.crypt("mAt3", sSalt);
-        
+       
+        String sGuessTxt;
         
         WordGenerator generator = new WordGenerator(sMask);
 
@@ -59,13 +57,12 @@ public final class BruteForceMasked {
         String sStartTime = currentDate.toString();
         System.out.println("Started at: " + sStartTime);
         
-        //for (String sCurrentHash : FileWrapper.UnixPasswdFile.hashes ) {
-            //CommonFile.sCurrentHash = sCurrentHash;
+        for (String sCurrentHash : FileWrapper.UnixPasswdFile.liHashes ) {
+            CommonFile.sCurrentHash = sCurrentHash;
             while(bCrackStatus != true){
-                //System.out.println(generator.generate());
                 sGuessTxt = generator.generate();
                 
-                if(Crypt.crypt(sGuessTxt, sSalt).equals(sComparison)){
+                if(Crypt.crypt(sGuessTxt, sSalt).equals(sCurrentHash)){
                     CommonFile.addUnhashedValue(sGuessTxt);
                     bCrackStatus = true;
                     currentDate = new Date();
@@ -75,6 +72,6 @@ public final class BruteForceMasked {
                 else
                     WordGenerator.nextSequence();
             }
-        //}
+        }
     }     
 }
