@@ -24,7 +24,7 @@ public class Cruncher {
     
     /* main **************************************************************
     ** 08/11/2015  M.Michalski    Initial Version
-    ** 09/11/2015  M.Michalski    Added case no. 2 (this is the documentation example
+    ** 09/11/2015  M.Michalski    Added case 2 Brute force with character masking
     ****************************************************************************/
     /** Description: main function of the Cruncher
      * 
@@ -41,9 +41,9 @@ public class Cruncher {
                 endProgram();
                 break;
             case "2":
-                System.out.println("Brute Force with Masking selected");
+                System.out.println("Brute force with character masking selected");
                 try {
-                    BruteForce.run(args[1], Integer.parseInt(args[2]));
+                    BruteForceMasked.run(args[1], args[2]);
                 } 
                 catch (UnsupportedEncodingException | FileNotFoundException ex) {
                     Logger.getLogger(Cruncher.class.getName()).log(Level.SEVERE, null, ex);

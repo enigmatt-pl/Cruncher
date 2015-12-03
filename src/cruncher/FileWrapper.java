@@ -37,7 +37,7 @@ public final class FileWrapper {
         try {
             writer = new PrintWriter("cache.csv", "UTF-8");
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
-            Logger.getLogger(BruteForce.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BruteForceMasked.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }
     
@@ -48,12 +48,12 @@ public final class FileWrapper {
     public static class UnixPasswdFile {
 
         /* Private variables declarations */
-        static public final List<String> hashes =  new ArrayList<>();
+        static public final List<String> liHashes =  new ArrayList<>();
 
         /* processFile *************************************************************
         ** 09/11/2015  M.Michalski Initial Version
         ***************************************************************************/
-        /** Processes the passwd file and holds the result in the hashes ArrayList
+        /** Processes the passwd file and holds the result in the liHashes ArrayList
          * @param fileName - name of the UNIX passwd file
         ***************************************************************************/
         public static void processUnixFile(String fileName){
@@ -65,7 +65,7 @@ public final class FileWrapper {
 
                 while((sCurrentLine = bufferReader.readLine()) != null ){
                     String[] parameters = sCurrentLine.split(":");
-                    hashes.add(parameters[1]);
+                    liHashes.add(parameters[1]);
                 }
             } 
             catch (IOException e){
@@ -88,7 +88,7 @@ public final class FileWrapper {
          * @return selected hash
         ***********************************************************************/
         public static String getHash(int index){
-            return hashes.get(index);
+            return liHashes.get(index);
         }
     }
 }

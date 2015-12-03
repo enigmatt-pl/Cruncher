@@ -1,10 +1,9 @@
 /******************************************************************************/
 /**
 @file          Cruncher.java
-@copyright     UP663375, UP646321, ECE00279
+@copyright     Mateusz Michalski
 * 
-@author        Mateusz Michalski
-@responsible   UP663375, UP646321, ECE00279
+@author        Mateusz Michalski(UP663375)
 *
 @language      Java SE 8 (March 18, 2014)
 *
@@ -14,7 +13,6 @@ package cruncher;
 
 /* INCLUDE FILES **************************************************************/
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public final class CommonFile {
