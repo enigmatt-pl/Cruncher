@@ -88,7 +88,10 @@ public final class FileWrapper {
          * @return selected hash
         ***********************************************************************/
         public static String getHash(int index){
-            return liHashes.get(index);
+            if(index < liHashes.size())
+                return liHashes.get(index);
+            else 
+                return"";
         }
     }
 }

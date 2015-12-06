@@ -31,7 +31,7 @@ public final class CommonFile {
     public static void addHash(String hash){
         
         //iCurrentHash = hash;
-        System.out.println("The following hash will be now processed: " + hash);
+        System.out.println("\nThe following hash will be now processed: " + hash);
         sCurrentHash = hash;
     }
     
@@ -45,7 +45,7 @@ public final class CommonFile {
         
         lUnhashed.add(text);
         iCurrentHash++;
-        System.out.println("The hash: " + sCurrentHash + " has been cracked! The"
+        System.out.println("\nThe hash: " + sCurrentHash + " has been cracked! The"
                 + " unhashed value is: " + lUnhashed.get(lUnhashed.size() - 1));
         
     }
