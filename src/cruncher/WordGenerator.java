@@ -112,7 +112,7 @@ public class WordGenerator {
     public String generate(){
         String sOutput = "";
 
-        for(int i =0; i < liWord.size(); i++){
+        for(int i =0; liWord.size() > i; i++){
 
             sOutput += liWord.get(i).get(liSequence.get(i));
         }
@@ -127,44 +127,44 @@ public class WordGenerator {
     ****************************************************************************/
     public static void nextSequence(){
         ArrayList<Integer> liNextSequence = new ArrayList<>();
-        
         int i = 0;
-        if(liSequence.get(i) < liWord.get(i).size() - 1)
-            liSequence.set(i, liSequence.get(i) + 1);
+        int liWordSize = liWord.size();
         
+        if(liSequence.get(i) < liWord.get(i).size() - 1)//1
+            liSequence.set(i, liSequence.get(i) + 1);
         else{
             liSequence.set(i, 0);
-            i++;
-            if (liSequence.get(i) < liWord.get(i).size() - 1)
+            i++; if(i > liWordSize - 1) return;
+            if (liSequence.get(i) < liWord.get(i).size() - 1)//2
                 liSequence.set(i, liSequence.get(i) + 1);
             else{
                 liSequence.set(i, 0);
-                i++;
-                if (liSequence.get(i) < liWord.get(i).size() - 1)
+                i++; if(i > liWordSize - 1) return;
+                if (liSequence.get(i) < liWord.get(i).size() - 1)//3
                     liSequence.set(i, liSequence.get(i) + 1);
                 else{
                     liSequence.set(i, 0);
-                    i++;
-                    if (liSequence.get(i) < liWord.get(i).size() - 1)
+                    i++; if(i > liWordSize - 1) return;
+                    if (liSequence.get(i) < liWord.get(i).size() - 1)//4
                         liSequence.set(i, liSequence.get(i) + 1);
                     else{
                         liSequence.set(i, 0);
-                        i++;
-                        if (liSequence.get(i) < liWord.get(i).size() - 1)
+                        i++; if(i > liWordSize - 1) return;
+                        if ((liSequence.get(i) < liWord.get(i).size() - 1))//5
                             liSequence.set(i, liSequence.get(i) + 1);
                         else{
                             liSequence.set(i, 0);
-                            i++;
-                            if (liSequence.get(i) < liWord.get(i).size() - 1)
+                            i++; if(i > liWordSize - 1) return;
+                            if (i < liWordSize && (liSequence.get(i) < liWord.get(i).size() - 1))
                                 liSequence.set(i, liSequence.get(i) + 1);
                             else{
                                 liSequence.set(i, 0);
-                                i++;
+                                i++; if(i > liWordSize - 1) return;
                                 if (liSequence.get(i) < liWord.get(i).size() - 1)
                                     liSequence.set(i, liSequence.get(i) + 1);
                                 else{
                                     liSequence.set(i, 0);
-                                    i++;
+                                    i++; if(i > liWordSize - 1) return;
                                     if (liSequence.get(i) < liWord.get(i).size() - 1)
                                         liSequence.set(i, liSequence.get(i) + 1);
                                 }

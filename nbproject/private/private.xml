@@ -5,10 +5,9 @@
         <group>
             <file>file:/D:/Cruncher/src/cruncher/CommonFile.java</file>
             <file>file:/D:/Cruncher/src/cruncher/WordGenerator.java</file>
-            <file>file:/D:/Cruncher/src/cruncher/FileWrapper.java</file>
+            <file>file:/D:/Cruncher/src/cruncher/BruteForceMasked.java</file>
             <file>file:/D:/Cruncher/src/cruncher/BruteForceTask.java</file>
             <file>file:/D:/Cruncher/src/cruncher/Cruncher.java</file>
-            <file>file:/D:/Cruncher/src/cruncher/BruteForce.java</file>
         </group>
     </open-files>
 </project-private>
