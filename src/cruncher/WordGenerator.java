@@ -19,12 +19,13 @@ import java.util.ArrayList;
 public class WordGenerator {
     
     /* Private variables declarations */
-    private final int iSize;
+    private final int iInitSize;
     private final char[] cMask;
     private ArrayList<Character> liLowerCaseEnAlphabet;
     private ArrayList<Character> liUpperCaseEnAlphabet;
     private ArrayList<Character> liDigit;
     private ArrayList<Character> liSymbols;
+    private ArrayList<Character> liAll;
     
     /* Public variables declarations */
 
@@ -32,6 +33,7 @@ public class WordGenerator {
      * Holds all possible symbols
      */
     public static ArrayList<ArrayList> liWord;
+    public static int iWordSize;
 
     /**
      * Holds current sequence
@@ -41,24 +43,25 @@ public class WordGenerator {
     /* Constructor *************************************************************
     ** 12/11/2015  M.Michalski    Initial Version
     ****************************************************************************/
-    /** Description: Constructor of the WordGenerator class
+    /* Description: Constructor of the WordGenerator class
      * @param sMask - mask to be used by the program
     ****************************************************************************/
     public WordGenerator(String sMask){
         this.cMask = sMask.toCharArray();
-        this.iSize = cMask.length;
+        this.iInitSize = cMask.length;
         
         initSymbols('l');
         initSymbols('u');
         initSymbols('d');
         initSymbols('s');
+        initSymbols('a');
         
         initConditions();
         
         /**
         * init the sequence with 0s  
         */
-        for(int i = 0; i < iSize; i++){
+        for(int i = 0; i < iInitSize; i++){
             WordGenerator.liSequence.add(0);
         }
         
@@ -73,40 +76,39 @@ public class WordGenerator {
     private void initConditions(){
         
         liWord = new ArrayList<>();
-        for(int i = 0; i < iSize; i++){
+        for(int i = 0; i < iInitSize; i++){
             switch(cMask[i]){
                 case 'l':
-                    liWord.add(liLowerCaseEnAlphabet);
-                    break;
-                case 'L':
+                case 'L':   
                     liWord.add(liLowerCaseEnAlphabet);
                     break;
                 case 'u':
-                    liWord.add(liUpperCaseEnAlphabet);
-                    break;
-                case 'U':
+                case 'U':    
                     liWord.add(liUpperCaseEnAlphabet);
                     break;
                 case 'd':
-                    liWord.add(liDigit);
-                    break;
                 case 'D':
                     liWord.add(liDigit);
                     break;
                 case 's':
-                    liWord.add(liSymbols);
-                    break;
                 case 'S':
                     liWord.add(liSymbols);
                     break;
+                case 'a':
+                case 'A':
+                    liWord.add(liAll);
+                    break;
             }
         }
+        
+        iWordSize = liWord.size();
+        
     }//end initConditions
     
     /* initConditions **********************************************************
     ** 15/11/2015  M.Michalski    Initial Version
     ****************************************************************************/
-    /** Description: generates one word according to the specification 
+    /* Description: generates one word according to the specification 
      * @return sOutput
     ****************************************************************************/
     public String generate(){
@@ -122,65 +124,27 @@ public class WordGenerator {
     /* nextSequence ************************************************************
     ** 16/11/2015  M.Michalski    Initial Version
     ****************************************************************************/
-    /** Description: increments liSequence in order to notify how the next word 
-     *  should be generated (max 8 char supported atm)
+    /* Description: increments liSequence in order to notify how the next word 
+     *  should be generated
     ****************************************************************************/
-    public static void nextSequence(){
-        ArrayList<Integer> liNextSequence = new ArrayList<>();
-        int i = 0;
-        int liWordSize = liWord.size();
+    public static void nextSequence(int iSize){
         
-        if(liSequence.get(i) < liWord.get(i).size() - 1)//1
-            liSequence.set(i, liSequence.get(i) + 1);
+        if(iSize == iWordSize){
+            return;
+        }
+        
+        if(liSequence.get(iSize) < liWord.get(iSize).size() - 1)//1
+            liSequence.set(iSize, liSequence.get(iSize) + 1);
         else{
-            liSequence.set(i, 0);
-            i++; if(i > liWordSize - 1) return;
-            if (liSequence.get(i) < liWord.get(i).size() - 1)//2
-                liSequence.set(i, liSequence.get(i) + 1);
-            else{
-                liSequence.set(i, 0);
-                i++; if(i > liWordSize - 1) return;
-                if (liSequence.get(i) < liWord.get(i).size() - 1)//3
-                    liSequence.set(i, liSequence.get(i) + 1);
-                else{
-                    liSequence.set(i, 0);
-                    i++; if(i > liWordSize - 1) return;
-                    if (liSequence.get(i) < liWord.get(i).size() - 1)//4
-                        liSequence.set(i, liSequence.get(i) + 1);
-                    else{
-                        liSequence.set(i, 0);
-                        i++; if(i > liWordSize - 1) return;
-                        if ((liSequence.get(i) < liWord.get(i).size() - 1))//5
-                            liSequence.set(i, liSequence.get(i) + 1);
-                        else{
-                            liSequence.set(i, 0);
-                            i++; if(i > liWordSize - 1) return;
-                            if (i < liWordSize && (liSequence.get(i) < liWord.get(i).size() - 1))
-                                liSequence.set(i, liSequence.get(i) + 1);
-                            else{
-                                liSequence.set(i, 0);
-                                i++; if(i > liWordSize - 1) return;
-                                if (liSequence.get(i) < liWord.get(i).size() - 1)
-                                    liSequence.set(i, liSequence.get(i) + 1);
-                                else{
-                                    liSequence.set(i, 0);
-                                    i++; if(i > liWordSize - 1) return;
-                                    if (liSequence.get(i) < liWord.get(i).size() - 1)
-                                        liSequence.set(i, liSequence.get(i) + 1);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
+            liSequence.set(iSize, 0);
+            nextSequence(++iSize); 
         }
     }//end nextSequence()
     
     /* initSymbols *************************************************************
     ** 14/11/2015  M.Michalski    Initial Version
     ****************************************************************************/
-    /** Description: initialises ASCII characters into the relevant array lists
+    /* Description: initialises ASCII characters into the relevant array lists
     ****************************************************************************/
     private void initSymbols(char cSymbol){
         
@@ -222,6 +186,13 @@ public class WordGenerator {
                 for( ch = 0x7B; ch <= 0x7E; ch++){ //fourth part of symbols
                    liSymbols.add(ch);
                 } 
+            break;
+                
+            case 'a':
+                liAll = new ArrayList<>();
+                for( ch = 0x20; ch <= 0x7E; ch++){ //All Symbols from [Space] to ~
+                   liAll.add(ch);
+                }
             break;
             }//end switch
     }//end initSymbols()
