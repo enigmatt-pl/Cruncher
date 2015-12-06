@@ -46,35 +46,33 @@ public final class BruteForceMasked {
     {
     
         FileWrapper.UnixPasswdFile.processUnixFile(sFileName);
-        
-        //String sCurrentHash = CommonFile.sCurrentHash;
-        String sGuessTxt, sComparison = Crypt.crypt("mAt3", sSalt);
-        
+       
+        String sGuessTxt;
         
         WordGenerator generator = new WordGenerator(sMask);
 
-        System.out.println("The program will now start generating words with " 
+        System.out.println("\nThe program will now start generating words with " 
                 + "the following mask: " + sMask);
         Date currentDate = new Date();
         String sStartTime = currentDate.toString();
-        System.out.println("Started at: " + sStartTime);
+        System.out.println("\nStarted at: " + sStartTime);
+        String sTempHash = Crypt.crypt("mAt", sSalt); //debug - can be removed
         
-        //for (String sCurrentHash : FileWrapper.UnixPasswdFile.hashes ) {
-            //CommonFile.sCurrentHash = sCurrentHash;
+        for (String sCurrentHash : FileWrapper.UnixPasswdFile.liHashes ) {
+            CommonFile.sCurrentHash = sCurrentHash;
             while(bCrackStatus != true){
-                //System.out.println(generator.generate());
                 sGuessTxt = generator.generate();
                 
-                if(Crypt.crypt(sGuessTxt, sSalt).equals(sComparison)){
+                if(Crypt.crypt(sGuessTxt, sSalt).equals(sTempHash)){//debug correct to sCurrentHash for proper use
                     CommonFile.addUnhashedValue(sGuessTxt);
                     bCrackStatus = true;
                     currentDate = new Date();
                     String sStopTime = currentDate.toString();
-                    System.out.println("Stopped at: " + sStopTime);
+                    System.out.println("\nStopped at: " + sStopTime);
                 }
                 else
                     WordGenerator.nextSequence();
             }
-        //}
+        }
     }     
 }
